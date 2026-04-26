@@ -1,1 +1,1115 @@
+<!DOCTYPE html>
 
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aaron & Michelle Brown — Japan Road Trip 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Shippori+Mincho:wght@400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0c0a;
+    --parchment: #f5f0e8;
+    --warm-white: #faf7f2;
+    --gold: #b8935a;
+    --gold-light: #d4ae7a;
+    --muted: #7a7168;
+    --rule: #d8cfc0;
+    --lunch-bg: #eef4ee;
+    --lunch-text: #2d5a2d;
+    --dinner-bg: #f4eee8;
+    --dinner-text: #6b3a1f;
+    --sight-bg: #e8eef4;
+    --sight-text: #1f3a6b;
+  }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(–ink);
+color: var(–parchment);
+font-family: ‘Jost’, sans-serif;
+font-weight: 300;
+line-height: 1.7;
+overflow-x: hidden;
+}
+
+/* ─── HERO ─── */
+.hero {
+min-height: 100svh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+padding: 60px 24px 80px;
+position: relative;
+background: var(–ink);
+overflow: hidden;
+}
+
+.hero::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background:
+radial-gradient(ellipse 80% 60% at 50% 20%, rgba(184,147,90,0.10) 0%, transparent 70%),
+radial-gradient(ellipse 60% 40% at 80% 80%, rgba(184,147,90,0.06) 0%, transparent 60%);
+pointer-events: none;
+}
+
+.hero-kana {
+font-family: ‘Shippori Mincho’, serif;
+font-size: clamp(11px, 2.5vw, 14px);
+letter-spacing: 0.35em;
+color: var(–gold);
+margin-bottom: 28px;
+opacity: 0;
+animation: fadeUp 1s 0.2s forwards;
+}
+
+.hero-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(40px, 10vw, 88px);
+font-weight: 300;
+line-height: 1.05;
+letter-spacing: -0.01em;
+color: var(–parchment);
+max-width: 700px;
+opacity: 0;
+animation: fadeUp 1s 0.4s forwards;
+}
+
+.hero-title em {
+font-style: italic;
+color: var(–gold-light);
+}
+
+.hero-rule {
+width: 60px;
+height: 1px;
+background: var(–gold);
+margin: 32px auto;
+opacity: 0;
+animation: fadeUp 1s 0.6s forwards;
+}
+
+.hero-meta {
+font-size: 12px;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+color: var(–muted);
+opacity: 0;
+animation: fadeUp 1s 0.8s forwards;
+line-height: 2;
+}
+
+.hero-meta strong {
+color: var(–parchment);
+font-weight: 400;
+}
+
+.scroll-cue {
+position: absolute;
+bottom: 32px;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 8px;
+opacity: 0;
+animation: fadeUp 1s 1.2s forwards;
+}
+
+.scroll-cue span {
+font-size: 10px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–muted);
+}
+
+.scroll-line {
+width: 1px;
+height: 40px;
+background: linear-gradient(to bottom, var(–gold), transparent);
+animation: scrollPulse 2s 2s infinite;
+}
+
+/* ─── OVERVIEW STRIP ─── */
+.overview {
+background: var(–gold);
+padding: 20px 24px;
+display: flex;
+justify-content: center;
+gap: 0;
+flex-wrap: wrap;
+}
+
+.ov-item {
+text-align: center;
+padding: 8px 24px;
+border-right: 1px solid rgba(0,0,0,0.15);
+}
+
+.ov-item:last-child { border-right: none; }
+
+.ov-num {
+display: block;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 28px;
+font-weight: 600;
+color: var(–ink);
+line-height: 1;
+}
+
+.ov-label {
+display: block;
+font-size: 10px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: rgba(14,12,10,0.65);
+margin-top: 4px;
+}
+
+/* ─── CONTENT WRAPPER ─── */
+.content {
+background: var(–warm-white);
+color: var(–ink);
+}
+
+/* ─── DAY SECTION ─── */
+.day {
+max-width: 720px;
+margin: 0 auto;
+padding: 64px 24px 0;
+opacity: 0;
+transform: translateY(24px);
+transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.day.visible {
+opacity: 1;
+transform: none;
+}
+
+.day-header {
+display: flex;
+align-items: baseline;
+gap: 16px;
+margin-bottom: 6px;
+}
+
+.day-num {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 13px;
+font-weight: 600;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–gold);
+}
+
+.day-date {
+font-size: 11px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–muted);
+}
+
+.day-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(28px, 6vw, 40px);
+font-weight: 300;
+line-height: 1.15;
+color: var(–ink);
+margin-bottom: 8px;
+}
+
+.day-title em { font-style: italic; color: var(–gold); }
+
+.day-subtitle {
+font-size: 12px;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(–muted);
+margin-bottom: 32px;
+}
+
+.day-rule {
+width: 100%;
+height: 1px;
+background: var(–rule);
+margin-bottom: 32px;
+}
+
+/* ─── STOP CARD ─── */
+.stop {
+margin-bottom: 40px;
+padding-bottom: 40px;
+border-bottom: 1px solid var(–rule);
+}
+
+.stop:last-child {
+border-bottom: none;
+}
+
+.stop-header {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+gap: 12px;
+margin-bottom: 12px;
+flex-wrap: wrap;
+}
+
+.stop-badge {
+display: inline-flex;
+align-items: center;
+gap: 6px;
+padding: 4px 12px;
+border-radius: 2px;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+}
+
+.badge-lunch { background: var(–lunch-bg); color: var(–lunch-text); }
+.badge-dinner { background: var(–dinner-bg); color: var(–dinner-text); }
+.badge-sight { background: var(–sight-bg); color: var(–sight-text); }
+
+.stop-time {
+font-size: 11px;
+letter-spacing: 0.1em;
+color: var(–muted);
+font-weight: 400;
+padding-top: 5px;
+}
+
+.stop-name {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(22px, 5vw, 30px);
+font-weight: 400;
+line-height: 1.2;
+color: var(–ink);
+margin-bottom: 4px;
+}
+
+.stop-name-jp {
+font-family: ‘Shippori Mincho’, serif;
+font-size: 13px;
+color: var(–muted);
+margin-bottom: 6px;
+display: block;
+}
+
+.stop-location {
+font-size: 11px;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–muted);
+margin-bottom: 16px;
+}
+
+.awards {
+display: flex;
+flex-wrap: wrap;
+gap: 6px;
+margin-bottom: 16px;
+}
+
+.award {
+font-size: 10px;
+letter-spacing: 0.1em;
+padding: 3px 10px;
+border: 1px solid var(–rule);
+border-radius: 2px;
+color: var(–muted);
+text-transform: uppercase;
+}
+
+.stop-desc {
+font-size: 15px;
+line-height: 1.75;
+color: #3a3530;
+margin-bottom: 16px;
+}
+
+.stop-hours {
+font-size: 12px;
+color: var(–muted);
+border-left: 2px solid var(–gold);
+padding-left: 12px;
+line-height: 1.6;
+margin-bottom: 16px;
+}
+
+.stop-book {
+font-size: 12px;
+font-weight: 500;
+letter-spacing: 0.08em;
+color: var(–gold);
+text-decoration: none;
+border-bottom: 1px solid var(–gold-light);
+padding-bottom: 1px;
+transition: color 0.2s, border-color 0.2s;
+}
+
+.stop-book:hover { color: var(–ink); border-color: var(–ink); }
+
+.drive-note {
+display: flex;
+align-items: center;
+gap: 10px;
+background: #f0ece5;
+border-radius: 4px;
+padding: 12px 16px;
+margin: 28px 0;
+font-size: 12px;
+color: var(–muted);
+letter-spacing: 0.05em;
+}
+
+.drive-note::before {
+content: ‘→’;
+font-size: 16px;
+color: var(–gold);
+flex-shrink: 0;
+}
+
+/* ─── OVERNIGHT TAG ─── */
+.overnight {
+background: var(–ink);
+color: var(–parchment);
+border-radius: 4px;
+padding: 14px 18px;
+margin-top: 32px;
+font-size: 12px;
+letter-spacing: 0.1em;
+}
+
+.overnight strong {
+color: var(–gold-light);
+font-weight: 500;
+display: block;
+margin-bottom: 2px;
+text-transform: uppercase;
+letter-spacing: 0.15em;
+font-size: 10px;
+}
+
+/* ─── NOTE BOX ─── */
+.note-box {
+background: #fff8f0;
+border: 1px solid #e8d5b8;
+border-left: 3px solid var(–gold);
+border-radius: 4px;
+padding: 16px 18px;
+margin: 40px 0;
+font-size: 13px;
+line-height: 1.7;
+color: #5a4a35;
+}
+
+.note-box strong {
+display: block;
+font-size: 10px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–gold);
+margin-bottom: 6px;
+font-weight: 500;
+}
+
+/* ─── BOOKING PRIORITY ─── */
+.booking-section {
+background: var(–ink);
+color: var(–parchment);
+padding: 64px 24px;
+}
+
+.booking-inner {
+max-width: 720px;
+margin: 0 auto;
+}
+
+.section-label {
+font-size: 10px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(–gold);
+margin-bottom: 16px;
+}
+
+.booking-title {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(28px, 6vw, 40px);
+font-weight: 300;
+color: var(–parchment);
+margin-bottom: 32px;
+line-height: 1.2;
+}
+
+.booking-list {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 0;
+}
+
+.booking-item {
+display: flex;
+align-items: center;
+gap: 16px;
+padding: 16px 0;
+border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.booking-rank {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 22px;
+color: var(–gold);
+width: 28px;
+flex-shrink: 0;
+line-height: 1;
+}
+
+.booking-name {
+font-size: 14px;
+font-weight: 400;
+color: var(–parchment);
+flex: 1;
+}
+
+.booking-name span {
+display: block;
+font-size: 11px;
+color: var(–muted);
+margin-top: 2px;
+}
+
+.booking-urgency {
+font-size: 10px;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+padding: 3px 10px;
+border-radius: 2px;
+flex-shrink: 0;
+}
+
+.urgency-high { background: rgba(184,147,90,0.2); color: var(–gold-light); }
+.urgency-med { background: rgba(255,255,255,0.07); color: var(–muted); }
+
+/* ─── GOOGLE MAPS BUTTON ─── */
+.maps-section {
+background: var(–warm-white);
+padding: 48px 24px;
+text-align: center;
+border-top: 1px solid var(–rule);
+}
+
+.maps-btn {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+background: var(–ink);
+color: var(–parchment);
+text-decoration: none;
+padding: 16px 32px;
+border-radius: 3px;
+font-size: 13px;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+font-weight: 400;
+transition: background 0.2s, color 0.2s;
+}
+
+.maps-btn:hover { background: var(–gold); color: var(–ink); }
+
+.maps-note {
+margin-top: 12px;
+font-size: 11px;
+color: var(–muted);
+letter-spacing: 0.05em;
+}
+
+/* ─── FOOTER ─── */
+footer {
+background: var(–ink);
+text-align: center;
+padding: 32px 24px;
+font-size: 11px;
+color: var(–muted);
+letter-spacing: 0.1em;
+}
+
+footer span { color: var(–gold); }
+
+/* ─── SEPARATOR BETWEEN DAYS ─── */
+.day-separator {
+max-width: 720px;
+margin: 0 auto;
+padding: 0 24px;
+display: flex;
+align-items: center;
+gap: 16px;
+padding-top: 48px;
+}
+
+.day-separator::before,
+.day-separator::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: var(–rule);
+}
+
+.day-sep-kana {
+font-family: ‘Shippori Mincho’, serif;
+font-size: 18px;
+color: var(–gold);
+opacity: 0.5;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(16px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollPulse {
+0%, 100% { opacity: 0.4; }
+50% { opacity: 1; }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 480px) {
+.ov-item { padding: 8px 14px; }
+.stop-header { flex-direction: column; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+
+<section class="hero">
+  <p class="hero-kana">日本ロードトリップ ２０２６</p>
+  <h1 class="hero-title">Aaron &<br><em>Michelle</em> Brown<br>Japan Road Trip</h1>
+  <div class="hero-rule"></div>
+  <p class="hero-meta">
+    <strong>November 1–6, 2026</strong><br>
+    Gunma · Tochigi · Miyagi · Yamagata · Niigata · Tokyo<br>
+    8 Destination Restaurants · 1 UNESCO World Heritage Site
+  </p>
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══════════ OVERVIEW ══════════ -->
+
+<div class="overview">
+  <div class="ov-item"><span class="ov-num">6</span><span class="ov-label">Days</span></div>
+  <div class="ov-item"><span class="ov-num">8</span><span class="ov-label">Restaurants</span></div>
+  <div class="ov-item"><span class="ov-num">5</span><span class="ov-label">Prefectures</span></div>
+  <div class="ov-item"><span class="ov-num">~950</span><span class="ov-label">Kilometres</span></div>
+</div>
+
+<!-- ══════════ DAYS ══════════ -->
+
+<div class="content">
+
+  <!-- DAY 1 -->
+
+  <section class="day" id="day1">
+    <div class="day-header">
+      <span class="day-num">Day One</span>
+      <span class="day-date">Sunday, November 1</span>
+    </div>
+    <h2 class="day-title">Gunma — <em>The Beginning</em></h2>
+    <p class="day-subtitle">Tatebayashi · Kawaba</p>
+    <div class="day-rule"></div>
+
+```
+<!-- Sushi Obana -->
+<div class="stop">
+  <div class="stop-header">
+    <span class="stop-badge badge-lunch">🍱 Lunch</span>
+    <span class="stop-time">12:00 – 17:00</span>
+  </div>
+  <h3 class="stop-name">Sushi Obana</h3>
+  <span class="stop-name-jp">鮨おばな</span>
+  <p class="stop-location">5-1 Ōtemachi, Tatebayashi, Gunma</p>
+  <div class="awards">
+    <span class="award">OAD #72</span>
+    <span class="award">Tabelog Silver</span>
+  </div>
+  <p class="stop-desc">
+    The anchor of the entire trip. Chef Terukuni Obana trained at Kyubey in Ginza before 
+    returning to his hometown of Tatebayashi to open one of Japan's most quietly revered 
+    sushi counters. He sources his fish personally from Tsukiji each morning — the omakase 
+    unfolds as eleven courses of otsumami followed by twenty pieces of hand-formed nigiri. 
+    Sunday is the <em>only</em> day open for lunch.
+  </p>
+  <div class="stop-hours">
+    <strong>Open hours:</strong> Sunday only · Lunch 12:00–17:00<br>
+    Dinner Tue–Sat 17:30–21:30 · Closed Monday
+  </div>
+  <a class="stop-book" href="https://www.instagram.com/sushi_obana/" target="_blank">Reserve via Pocket Concierge or Instagram →</a>
+</div>
+
+<div class="drive-note">1 hour west via Route 50 → Kawaba, Gunma</div>
+
+<!-- VENTINOVE -->
+<div class="stop">
+  <div class="stop-header">
+    <span class="stop-badge badge-dinner">🍽 Dinner</span>
+    <span class="stop-time">From 18:00</span>
+  </div>
+  <h3 class="stop-name">VENTINOVE</h3>
+  <span class="stop-name-jp">ヴェンティノーヴェ</span>
+  <p class="stop-location">2593-1 Yachi, Kawaba, Tone District, Gunma</p>
+  <div class="awards">
+    <span class="award">Tabelog Bronze</span>
+  </div>
+  <p class="stop-desc">
+    Set on the grounds of the Tsuchida Sake Brewery in mountain Kawaba, VENTINOVE opened 
+    in 2022 and has already become one of Japan's most talked-about destination restaurants. 
+    Chef Yusuke Takeuchi cooks everything over wood fire, sourcing all ingredients from within 
+    a thirty-minute radius — foraged mushrooms, black truffles, hunted game, and the 
+    brewery's own sake lees in unexpected preparations. The Akagi beef bistecca is not to 
+    be missed.
+  </p>
+  <p class="stop-desc">
+    <strong>Highly recommended:</strong> stay overnight as the auberge accepts one group 
+    per night, transforming this into a full immersive evening in the mountains.
+  </p>
+  <div class="stop-hours">
+    <strong>Open hours:</strong> Dinner every day · Book via 29ventinove.com
+  </div>
+  <a class="stop-book" href="https://29ventinove.com" target="_blank">Book at 29ventinove.com →</a>
+</div>
+
+<div class="overnight"><strong>Sleep</strong>VENTINOVE Auberge, Kawaba — or Numata town nearby</div>
+```
+
+  </section>
+
+  <div class="day-separator"><span class="day-sep-kana">二</span></div>
+
+  <!-- DAY 2 -->
+
+  <section class="day" id="day2">
+    <div class="day-header">
+      <span class="day-num">Day Two</span>
+      <span class="day-date">Monday, November 2</span>
+    </div>
+    <h2 class="day-title">Nikkō to <em>Sendai</em></h2>
+    <p class="day-subtitle">Tochigi · Miyagi</p>
+    <div class="day-rule"></div>
+
+```
+<!-- Nikko -->
+<div class="stop">
+  <div class="stop-header">
+    <span class="stop-badge badge-sight">🍂 Morning Stop</span>
+    <span class="stop-time">09:00 – 11:30</span>
+  </div>
+  <h3 class="stop-name">Nikkō Tōshōgū</h3>
+  <span class="stop-name-jp">日光東照宮</span>
+  <p class="stop-location">2301 Sannai, Nikkō, Tochigi</p>
+  <div class="awards">
+    <span class="award">UNESCO World Heritage</span>
+    <span class="award">Rating 4.5 · 33,000+ reviews</span>
+  </div>
+  <p class="stop-desc">
+    Depart Kawaba at 8:30 AM and arrive at Nikkō in one hour — perfectly timed for the 
+    9:00 opening. November is the absolute peak of <em>kōyō</em> (紅葉) season here: 
+    the ancient cedar avenues, five-storey pagodas, and vermillion shrine gates are 
+    framed in blazing crimson and gold. Allow ninety minutes to two hours to walk the 
+    complex without rushing.
+  </p>
+  <div class="stop-hours">
+    <strong>Open hours:</strong> Daily 09:00–16:00 · Admission ¥1,300
+  </div>
+  <a class="stop-book" href="https://www.toshogu.jp/" target="_blank">toshogu.jp →</a>
+</div>
+
+<div class="drive-note">2.5 hours via Nikkō IC → Tohoku Expressway → Sendai</div>
+
+<!-- IL PIZZAIOLO -->
+<div class="stop">
+  <div class="stop-header">
+    <span class="stop-badge badge-lunch">🍱 Lunch</span>
+    <span class="stop-time">11:30 – 15:00</span>
+  </div>
+  <h3 class="stop-name">IL PIZZAIOLO</h3>
+  <span class="stop-name-jp">イル・ピッツァイオーロ</span>
+  <p class="stop-location">1-9-21 Tsutsumimachi, Aoba Ward, Sendai</p>
+  <div class="awards">
+    <span class="award">Tabelog Bronze</span>
+  </div>
+  <p class="stop-desc">
+    A small, wood-fired counter in central Sendai serving what many consider the finest 
+    Neapolitan pizza in the Tohoku region. The dough ferments for 48 hours, the San Marzano 
+    tomatoes are imported directly, and the knowledgeable staff will guide you through 
+    sake and natural wine pairings. Arrive by 13:00 for a relaxed lunch.
+  </p>
+  <div class="stop-hours">
+    <strong>Open hours:</strong> Monday, Friday–Sunday · Lunch 11:30–15:00 · Dinner 18:00–22:00<br>
+    Closed Tuesday–Thursday
+  </div>
+</div>
+
+<!-- Keisuke Matsumoto -->
+<div class="stop">
+  <div class="stop-header">
+    <span class="stop-badge badge-dinner">🍽 Dinner</span>
+    <span class="stop-time">18:00 – 23:00</span>
+  </div>
+  <h3 class="stop-name">Keisuke Matsumoto</h3>
+  <span class="stop-name-jp">松本圭介</span>
+  <p class="stop-location">2-3-17 Kashiwagi, Aoba Ward, Sendai</p>
+  <p class="stop-desc">
+    Five counter seats. That is all. Chef Matsumoto's philosophy — Japanese spirit 
+    harmonised with classical Western technique — produces dishes of extraordinary 
+    precision: white asparagus wrapped in Sendai Wagyu with spring truffle, Hidakami 
+    beef with a Shaoxing wine reduction, local shellfish in dashi beurre blanc. 
+    One of Sendai's most coveted tables; reserve months in advance.
+  </p>
+  <div class="stop-hours">
+    <strong>Open hours:</strong> Daily 18:00–23:00 · Dinner only
+  </div>
+  <a class="stop-book" href="https://mattunipt.shopinfo.jp/" target="_blank">Reserve via Tablecheck →</a>
+</div>
+
+<div class="overnight"><strong>Sleep</strong>Sendai city — Hotel Metropolitan or Westin Sendai recommended</div>
+```
+
+  </section>
+
+  <div class="day-separator"><span class="day-sep-kana">三</span></div>
+
+  <!-- DAY 3 -->
+
+  <section class="day" id="day3">
+    <div class="day-header">
+      <span class="day-num">Day Three</span>
+      <span class="day-date">Tuesday, November 3 — Culture Day</span>
+    </div>
+    <h2 class="day-title">Akayu — <em>The Auberge</em></h2>
+    <p class="day-subtitle">Nanyo, Yamagata</p>
+    <div class="day-rule"></div>
+
+```
+<p class="stop-desc" style="margin-bottom:32px; padding-bottom: 32px; border-bottom: 1px solid var(--rule);">
+  A gentle day. Drive one hour from Sendai to Akayu Onsen — one of Yamagata's oldest 
+  hot spring towns, known for its sulphurous waters and slow pace. Check in early, 
+  explore the historic bathhouses along the Matsukawa river, and rest before the evening.
+</p>
+
+<!-- SINCERITA -->
+<div class="stop">
+  <div class="stop-header">
+    <span class="stop-badge badge-dinner">🍽 Dinner</span>
+    <span class="stop-time">From 18:00</span>
+  </div>
+  <h3 class="stop-name">Stanza della SINCERITA</h3>
+  <span class="stop-name-jp">オステリア シンチェリータ</span>
+  <p class="stop-location">3005 Akayu, Nanyō, Yamagata</p>
+  <div class="awards">
+    <span class="award">Michelin Key</span>
+    <span class="award">Tabelog Bronze</span>
+  </div>
+  <p class="stop-desc">
+    Two rooms. One chef. Chef Makoto Harada built this intimate auberge in the heart 
+    of the Akayu Onsen district to express a single idea: Yamagata's seasons on a plate, 
+    cooked over wood fire in an Italian language. Yonezawa beef, mountain vegetables, 
+    housemade pasta, local sake — the evening meal here is unhurried and deeply personal. 
+    Staying overnight is the full experience; breakfast the following morning is 
+    equally considered.
+  </p>
+  <p class="stop-desc">
+    <strong>Pricing:</strong> Overnight with two meals from ¥77,000–¥110,000 per person. 
+    Dinner only ¥33,000.
+  </p>
+  <div class="stop-hours">
+    <strong>Open hours:</strong> Check website — advance booking essential
+  </div>
+  <a class="stop-book" href="https://osteria-sincerita.com/" target="_blank">Book at osteria-sincerita.com →</a>
+</div>
+
+<div class="overnight"><strong>Sleep</strong>Osteria Sincerita, Akayu — strongly recommended for the full experience</div>
+```
+
+  </section>
+
+  <div class="day-separator"><span class="day-sep-kana">四</span></div>
+
+  <!-- DAY 4 -->
+
+  <section class="day" id="day4">
+    <div class="day-header">
+      <span class="day-num">Day Four</span>
+      <span class="day-date">Wednesday, November 4</span>
+    </div>
+    <h2 class="day-title">Mountain to <em>Rice Paddy</em></h2>
+    <p class="day-subtitle">Nishikawa, Yamagata → Sanjo, Niigata</p>
+    <div class="day-rule"></div>
+
+```
+<!-- DEWA YA -->
+<div class="stop">
+  <div class="stop-header">
+    <span class="stop-badge badge-lunch">🍱 Lunch</span>
+    <span class="stop-time">11:30 – 14:00</span>
+  </div>
+  <h3 class="stop-name">Dewa Ya</h3>
+  <span class="stop-name-jp">出羽屋</span>
+  <p class="stop-location">〒990-0703 山形県西村山郡西川町間沢58, Nishikawa</p>
+  <div class="awards">
+    <span class="award">Tabelog Silver</span>
+    <span class="award">Tabelog Chefs' Gold</span>
+  </div>
+  <p class="stop-desc">
+    At the foot of sacred Mt. Gassan, this legendary mountain inn has been serving 
+    the region's most extraordinary wild-foraged cuisine for generations. Chef Haruki 
+    Sato personally gathers the ingredients — mountain vegetables, wild mushrooms, 
+    bear meat, venison — and serves one group at a time in a setting of austere 
+    natural beauty. This is one of the hardest reservations in all of Japan; 
+    begin trying months in advance.
+  </p>
+  <div class="stop-hours">
+    <strong>Open hours:</strong> Wed–Mon, Lunch only 11:30–14:00 · Closed Tuesday
+  </div>
+  <a class="stop-book" href="http://www.dewaya.com/" target="_blank">dewaya.com →</a>
+</div>
+
+<div class="drive-note">1.5 hours via Route 112 → Kan-Etsu Expressway → Sanjo, Niigata</div>
+
+<!-- UOZEN -->
+<div class="stop">
+  <div class="stop-header">
+    <span class="stop-badge badge-dinner">🍽 Dinner</span>
+    <span class="stop-time">17:30 – 23:00</span>
+  </div>
+  <h3 class="stop-name">Restaurant UOZEN</h3>
+  <span class="stop-name-jp">レストラン ウオゼン</span>
+  <p class="stop-location">1-10-69-8 Higashiōsaki, Sanjo, Niigata</p>
+  <div class="awards">
+    <span class="award">OAD #180</span>
+    <span class="award">Tabelog Silver</span>
+  </div>
+  <p class="stop-desc">
+    Chef Kazuhiro Inoue holds a hunting licence. He personally sources wild boar, 
+    deer, bear, and seasonal seafood from the Sea of Japan — then serves it as 
+    refined, inventive modern French cuisine in a converted farmhouse surrounded by 
+    rice paddies. The contrast between the pastoral setting and the precision of the 
+    cooking is part of what makes UOZEN one of Japan's most quietly significant 
+    restaurants.
+  </p>
+  <div class="stop-hours">
+    <strong>Open hours:</strong> Tue–Sun · Dinner 17:30–23:00 (Wed–Sat also Lunch 11:30–15:00)<br>
+    Closed Monday
+  </div>
+  <a class="stop-book" href="http://uozen.jp/" target="_blank">uozen.jp →</a>
+</div>
+
+<div class="overnight"><strong>Sleep</strong>Sanjo or Niigata city</div>
+```
+
+  </section>
+
+  <div class="day-separator"><span class="day-sep-kana">五</span></div>
+
+  <!-- DAY 5 -->
+
+  <section class="day" id="day5">
+    <div class="day-header">
+      <span class="day-num">Day Five</span>
+      <span class="day-date">Thursday, November 5</span>
+    </div>
+    <h2 class="day-title">Murakami — <em>Samurai Town</em></h2>
+    <p class="day-subtitle">Murakami, Niigata</p>
+    <div class="day-rule"></div>
+
+```
+<!-- SHINTAKU -->
+<div class="stop">
+  <div class="stop-header">
+    <span class="stop-badge badge-lunch">🍱 Lunch</span>
+    <span class="stop-time">11:30 – 14:30</span>
+  </div>
+  <h3 class="stop-name">Kappou Shintaku</h3>
+  <span class="stop-name-jp">割烹 新多久</span>
+  <p class="stop-location">3-38 Komachi, Murakami, Niigata</p>
+  <div class="awards">
+    <span class="award">OAD #369</span>
+    <span class="award">Tabelog Silver</span>
+  </div>
+  <p class="stop-desc">
+    Founded in 1867 and now run by brothers who trained in Kyoto's finest kaiseki 
+    houses, Shintaku draws over ninety percent of its ingredients from the Murakami 
+    region. This means the city's celebrated local salmon — salted and dried in the 
+    winter winds — appears in multiple forms; alongside wagyu, wild boar, and 
+    seasonal mountain vegetables. The historic kappou dining room, with its lacquered 
+    counter and shoji screens, is itself an experience.
+  </p>
+  <p class="stop-desc">
+    After lunch, spend the afternoon walking Murakami's beautifully preserved samurai 
+    streets, visiting the sake breweries, and the city's renowned 
+    Masamune Iguchi Museum of Art before heading south.
+  </p>
+  <div class="stop-hours">
+    <strong>Open hours:</strong> Mon–Tue, Thu–Sun · Lunch 11:30–14:30 · Dinner 17:00–21:30<br>
+    Closed Wednesday
+  </div>
+  <a class="stop-book" href="https://murakami-sintaku.com/" target="_blank">murakami-sintaku.com →</a>
+</div>
+
+<div class="overnight"><strong>Sleep</strong>Murakami, or drive south to Niigata city for accommodation</div>
+```
+
+  </section>
+
+  <div class="day-separator"><span class="day-sep-kana">六</span></div>
+
+  <!-- DAY 6 -->
+
+  <section class="day" id="day6" style="padding-bottom: 64px;">
+    <div class="day-header">
+      <span class="day-num">Day Six</span>
+      <span class="day-date">Friday, November 6</span>
+    </div>
+    <h2 class="day-title">Return to <em>Tokyo</em></h2>
+    <p class="day-subtitle">Murakami → Tokyo</p>
+    <div class="day-rule"></div>
+
+```
+<div class="drive-note">4 – 4.5 hours via Kan-Etsu Expressway → Kanetsu JCT → Kanto Expressway → Tokyo</div>
+
+<div class="stop">
+  <div class="stop-header">
+    <span class="stop-badge badge-lunch">🍱 Final Lunch</span>
+    <span class="stop-time">From 13:00</span>
+  </div>
+  <h3 class="stop-name">Tokyo — Your Choice</h3>
+  <p class="stop-location">Tokyo</p>
+  <p class="stop-desc">
+    Arrive in Tokyo by midday for a final lunch of your choosing. After six days of 
+    destination dining, the city feels both familiar and electric. A few fitting ways 
+    to close the trip:
+  </p>
+  <p class="stop-desc">
+    <strong>For sushi</strong> — Sushi Saito (Akasaka, if you can secure it), 
+    Sushi Yoshitake (Ginza, 3 Michelin stars), or Harutaka (Ginza).<br>
+    <strong>For something celebratory</strong> — Den (Jingumae), one of Japan's 
+    most inventive and joyful meals.<br>
+    <strong>For simplicity</strong> — a bowl of cold soba at Kanda Yabu Soba, 
+    Tokyo's oldest, founded 1880.
+  </p>
+</div>
+
+<div class="note-box">
+  <strong>⚠ Note — Tokiwa Sushi Shibata Honten (登喜和鮨 新発田本店)</strong>
+  This OAD #194 sushi counter in Shibata, Niigata — one of the most acclaimed outside 
+  Tokyo — operates its Honten location on weekends only (Sat–Sun, lunch from 11:30). 
+  The only Sunday in the trip is committed to Sushi Obana. Consider extending the trip 
+  by one day to add a <strong>Saturday, November 7</strong> lunch in Shibata on the 
+  drive home from Murakami — it sits directly on the route.
+</div>
+```
+
+  </section>
+
+</div><!-- /content -->
+
+<!-- ══════════ BOOKING PRIORITY ══════════ -->
+
+<div class="booking-section">
+  <div class="booking-inner">
+    <p class="section-label">Reservations</p>
+    <h2 class="booking-title">Booking Priority<br><em style="font-style:italic; font-family:'Cormorant Garamond',serif; font-weight:300; color:var(--gold-light);">Begin immediately</em></h2>
+    <ul class="booking-list">
+      <li class="booking-item">
+        <span class="booking-rank">1</span>
+        <div class="booking-name">Dewa Ya<span>Nishikawa, Yamagata · One group per day · Months-long waitlist</span></div>
+        <span class="booking-urgency urgency-high">Urgent</span>
+      </li>
+      <li class="booking-item">
+        <span class="booking-rank">2</span>
+        <div class="booking-name">Kappou Shintaku<span>Murakami, Niigata · Limited covers · Book 3+ months ahead</span></div>
+        <span class="booking-urgency urgency-high">Urgent</span>
+      </li>
+      <li class="booking-item">
+        <span class="booking-rank">3</span>
+        <div class="booking-name">Osteria Sincerita<span>Akayu, Yamagata · Only 2 rooms · Books out far in advance</span></div>
+        <span class="booking-urgency urgency-high">Urgent</span>
+      </li>
+      <li class="booking-item">
+        <span class="booking-rank">4</span>
+        <div class="booking-name">Sushi Obana<span>Tatebayashi, Gunma · Sunday lunch only · Pocket Concierge</span></div>
+        <span class="booking-urgency urgency-high">Urgent</span>
+      </li>
+      <li class="booking-item">
+        <span class="booking-rank">5</span>
+        <div class="booking-name">Restaurant UOZEN<span>Sanjo, Niigata · Popular destination · Book 2+ months ahead</span></div>
+        <span class="booking-urgency urgency-med">Soon</span>
+      </li>
+      <li class="booking-item">
+        <span class="booking-rank">6</span>
+        <div class="booking-name">VENTINOVE<span>Kawaba, Gunma · Auberge room fills fast · Book via website</span></div>
+        <span class="booking-urgency urgency-med">Soon</span>
+      </li>
+      <li class="booking-item">
+        <span class="booking-rank">7</span>
+        <div class="booking-name">Keisuke Matsumoto<span>Sendai · 5 counter seats · Reserve via Tablecheck</span></div>
+        <span class="booking-urgency urgency-med">Soon</span>
+      </li>
+      <li class="booking-item">
+        <span class="booking-rank">8</span>
+        <div class="booking-name">IL PIZZAIOLO<span>Sendai · Most accessible · Reserve 1–2 months ahead</span></div>
+        <span class="booking-urgency urgency-med">Soon</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════ MAPS BUTTON ══════════ -->
+
+<div class="maps-section">
+  <a class="maps-btn" href="https://www.google.com/maps/dir/36.246046,139.538042/36.6875,139.1064/36.7580878,139.5987466/38.28417,140.86992/38.271717,140.854406/38.0486386,140.1703712/38.4305219,140.1320475/37.6271956,138.9911135/38.2254657,139.4772008/35.6762,139.6503" target="_blank">
+    🗺 Open Full Route in Google Maps
+  </a>
+  <p class="maps-note">Opens all 10 stops as a driving route · Save to your Google account to access on any device</p>
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+
+<footer>
+  <span>Aaron & Michelle Brown</span> · Japan Road Trip · November 1–6, 2026<br>
+  Gunma · Tochigi · Miyagi · Yamagata · Niigata · Tokyo
+</footer>
+
+<script>
+  // Intersection Observer for fade-in animation
+  const days = document.querySelectorAll('.day');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  days.forEach(d => observer.observe(d));
+</script>
+
+</body>
+</html>
